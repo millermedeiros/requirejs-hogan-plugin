@@ -263,7 +263,7 @@ var Hogan = {};
 
 define('text',{});
 define('hgn',{load: function(id){throw new Error("Dynamic load not allowed: " + id);}});
-define("hgn!foo", ["hogan"], function(hogan){  return new hogan.Template(function(c,p,i){var _=this;_.b(i=i||"");_.b("<div class=\"foo\">\r");_.b("\n" + i);_.b("    <h1>");_.b(_.v(_.f("title",c,p,0)));_.b("</h1>\r");_.b("\n" + i);_.b("    <ul>\r");_.b("\n" + i);if(_.s(_.f("names",c,p,1),c,p,0,71,105,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("        <li>");_.b(_.v(_.d(".",c,p,0)));_.b("</li>\r");_.b("\n");});c.pop();}_.b("    </ul>\r");_.b("\n" + i);_.b("</div>\r");_.b("\n");return _.fl();;}, "", hogan);});
+define("hgn!foo", ["hogan"], function(hogan){  var tmpl = new hogan.Template(function(c,p,i){var _=this;_.b(i=i||"");_.b("<div class=\"foo\">\r");_.b("\n" + i);_.b("    <h1>");_.b(_.v(_.f("title",c,p,0)));_.b("</h1>\r");_.b("\n" + i);_.b("    <ul>\r");_.b("\n" + i);if(_.s(_.f("names",c,p,1),c,p,0,71,105,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("        <li>");_.b(_.v(_.d(".",c,p,0)));_.b("</li>\r");_.b("\n");});c.pop();}_.b("    </ul>\r");_.b("\n" + i);_.b("</div>\r");_.b("\n");return _.fl();;}, "", hogan);  return function(){ return tmpl.render.apply(tmpl, arguments); };});
 
 require.config({
     // set paths since they are outside the baseUrl
@@ -302,7 +302,10 @@ require(['hgn!foo'], function(foo){
         names : ['world', 'foo bar', 'lorem ipsum', 'nurse']
     };
 
-    document.getElementById('wrapper').innerHTML += foo.render(data);
+    // before build you can also access the `foo.text` property for debugging
+    // if needed
+    // console.log( foo.text )
+    document.getElementById('wrapper').innerHTML += foo(data);
 
 });
 

@@ -1,5 +1,5 @@
 /**@license
- * RequireJS Hogan Plugin | v0.1.0 (2012/06/18)
+ * RequireJS Hogan Plugin | v0.2.0 (2012/06/29)
  * Author: Miller Medeiros | MIT License
  */
 define(['hogan', 'text'], function (hogan, text) {
@@ -8,7 +8,9 @@ define(['hogan', 'text'], function (hogan, text) {
 
     var _buildMap = {};
     var _buildTemplateText = 'define("{{pluginName}}!{{moduleName}}", ["hogan"], function(hogan){'+
-                             '  return new hogan.Template({{{fn}}}, "", hogan);'+
+                             '  var tmpl = new hogan.Template({{{fn}}}, "", hogan);'+
+                             // need to use apply to bind the proper scope.
+                             '  return function(){ return tmpl.render.apply(tmpl, arguments); };'+
                              '});\n';
     var _buildTemplate;
 
@@ -31,8 +33,21 @@ define(['hogan', 'text'], function (hogan, text) {
 
             // maybe it's required by some other plugin during build
             // so return the compiled template even during build
-            onLoad( hogan.compile(data, compilationOptions) );
+            var template = hogan.compile(data, compilationOptions);
+            var render = bind(template.render, template);
+            // add text property for debugging if needed.
+            // it's important to notice that this value won't be available
+            // after build.
+            render.text = template.text;
+            // return just the render method so it's easier to use
+            onLoad( render );
         });
+    }
+
+    function bind(fn, context) {
+        return function(){
+            return fn.apply(context, arguments);
+        };
     }
 
     function mixIn(target, source) {
