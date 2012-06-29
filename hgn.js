@@ -4,6 +4,8 @@
  */
 define(['hogan', 'text'], function (hogan, text) {
 
+    var DEFAULT_EXTENSION = '.mustache';
+
     var _buildMap = {};
     var _buildTemplateText = 'define("{{pluginName}}!{{moduleName}}", ["hogan"], function(hogan){'+
                              '  return new hogan.Template({{{fn}}}, "", hogan);'+
@@ -14,7 +16,7 @@ define(['hogan', 'text'], function (hogan, text) {
     function load(name, req, onLoad, config){
         var hgnConfig = config.hgn;
         var fileName = name;
-        fileName += hgnConfig && hgnConfig.templateExtension != null? '.'+ hgnConfig.templateExtension : '.mustache';
+        fileName += hgnConfig && hgnConfig.templateExtension != null? hgnConfig.templateExtension : DEFAULT_EXTENSION;
 
         // load text files with text plugin
         text.get(req.toUrl(fileName), function(data){

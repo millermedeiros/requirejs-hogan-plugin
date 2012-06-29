@@ -1,5 +1,10 @@
 define(function(require, exports, module){
 
+// wrapped Hogan.js into an AMD module and also added pragmas to remove
+// compiler after build if it isn't needed. Source code wasn't touched
+// besides that.
+
+
 // START WRAPPED CODE
 // ===========================================================================
 
@@ -248,6 +253,8 @@ var Hogan = {};
 })(typeof exports !== 'undefined' ? exports : Hogan);
 
 
+
+//>>excludeStart('excludeHogan', pragmas.excludeHogan)
 
 
 (function (Hogan) {
@@ -579,6 +586,8 @@ var Hogan = {};
     return this.cache[key] = t;
   };
 })(typeof exports !== 'undefined' ? exports : Hogan);
+
+//>>excludeEnd('excludeHogan')
 
 
 // END WRAPPED CODE

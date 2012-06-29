@@ -4,6 +4,12 @@ _requirejs.optimize({
     //stubModules can be used to remove unneeded plugins after build
     stubModules : ['text', 'hgn'],
 
+    pragmasOnSave : {
+        // you can use this pragma to exclude compiler logic from Hogan.js in
+        // case you don't need to compile any templates after buid
+        excludeHogan : true
+    },
+
     mainConfigFile : 'scripts/main.js',
     baseUrl : 'scripts',
     name : 'main',

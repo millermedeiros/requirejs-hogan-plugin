@@ -10,8 +10,8 @@ require.config({
     hgn : {
         // load "*.mustache" files, set to empty string if you
         // want to specify the template extension for each individual file
-        // the default value is "mustache"
-        templateExtension : 'mustache',
+        // the default value is ".mustache"
+        templateExtension : '.mustache',
 
         // if you need to set custom options it can be done through the
         // "compilationOptions" setting, check hogan documentation:
