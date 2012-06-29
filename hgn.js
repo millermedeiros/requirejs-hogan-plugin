@@ -4,6 +4,8 @@
  */
 define(['hogan', 'text'], function (hogan, text) {
 
+    var DEFAULT_EXTENSION = 'mustache';
+
     var _buildMap = {};
     var _buildTemplateText = 'define("{{pluginName}}!{{moduleName}}", ["hogan"], function(hogan){'+
                              '  return new hogan.Template({{{fn}}}, "", hogan);'+
@@ -14,7 +16,7 @@ define(['hogan', 'text'], function (hogan, text) {
     function load(name, req, onLoad, config){
         var hgnConfig = config.hgn;
         var fileName = name;
-        fileName += hgnConfig && hgnConfig.templateExtension != null? '.'+ hgnConfig.templateExtension : '.mustache';
+        fileName += hgnConfig && hgnConfig.templateExtension != null? '.'+ hgnConfig.templateExtension : '.'+ DEFAULT_EXTENSION;
 
         // load text files with text plugin
         text.get(req.toUrl(fileName), function(data){
@@ -29,8 +31,19 @@ define(['hogan', 'text'], function (hogan, text) {
 
             // maybe it's required by some other plugin during build
             // so return the compiled template even during build
-            onLoad( hogan.compile(data, compilationOptions) );
+            var template = hogan.compile(data, compilationOptions);
+            var render = bind(template.render, template);
+            // add text property for debugging if needed.
+            render.text = template.text;
+            // return just the render method so it's easier to use
+            onLoad( render );
         });
+    }
+
+    function bind(fn, context) {
+        return function(){
+            return fn.apply(context, arguments);
+        };
     }
 
     function mixIn(target, source) {
