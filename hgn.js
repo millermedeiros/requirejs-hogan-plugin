@@ -18,15 +18,29 @@ define(['hogan', 'text'], function (hogan, text) {
 
         // load text files with text plugin
         text.get(req.toUrl(fileName), function(data){
+            var compilationOptions = hgnConfig.compilationOptions? mixIn({}, hgnConfig.compilationOptions) : {};
+
             if (config.isBuild) {
                 // store compiled function if build
-                _buildMap[name] = hogan.compile(data, {asString : true});
+                // and should always be a string
+                compilationOptions.asString = true;
+                _buildMap[name] = hogan.compile(data, compilationOptions);
             }
 
             // maybe it's required by some other plugin during build
             // so return the compiled template even during build
-            onLoad( hogan.compile(data) );
+            onLoad( hogan.compile(data, compilationOptions) );
         });
+    }
+
+    function mixIn(target, source) {
+        var key;
+        for (key in source){
+            if ( Object.prototype.hasOwnProperty.call(source, key) ) {
+                target[key] = source[key];
+            }
+        }
+        return target;
     }
 
     function write(pluginName, moduleName, writeModule){
