@@ -16,7 +16,7 @@ define(['hogan', 'text'], function (hogan, text) {
 
 
     function load(name, req, onLoad, config){
-        var hgnConfig = config.hgn;
+        var hgnConfig = config.hgn || {};
         var fileName = name;
         fileName += hgnConfig && hgnConfig.templateExtension != null? hgnConfig.templateExtension : DEFAULT_EXTENSION;
 
