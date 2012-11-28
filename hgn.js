@@ -10,7 +10,7 @@ define(['hogan', 'text'], function (hogan, text) {
     var _buildTemplateText = 'define("{{pluginName}}!{{moduleName}}", ["hogan"], function(hogan){'+
                              '  var tmpl = new hogan.Template({{{fn}}}, "", hogan);'+
                              // need to use apply to bind the proper scope.
-                             '  return function(){ return tmpl.render.apply(tmpl, arguments); };'+
+                             '  function render(){ return tmpl.render.apply(tmpl, arguments); } render.template = tmpl; return render;'+
                              '});\n';
     var _buildTemplate;
 
@@ -39,6 +39,7 @@ define(['hogan', 'text'], function (hogan, text) {
             // it's important to notice that this value won't be available
             // after build.
             render.text = template.text;
+            render.template = template;
             // return just the render method so it's easier to use
             onLoad( render );
         });
