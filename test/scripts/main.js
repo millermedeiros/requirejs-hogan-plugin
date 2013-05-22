@@ -29,7 +29,6 @@ require.config({
 // the ".mustache" extension is inferred based on the settings above
 // using `require` instead of define since this is our "entry-point"
 require(['hgn!foo'], function(foo){
-
     var data = {
         title : 'Hello!',
         names : ['world', 'foo bar', 'lorem ipsum', 'nurse']

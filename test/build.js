@@ -6,7 +6,7 @@ _requirejs.optimize({
 
     pragmasOnSave : {
         // you can use this pragma to exclude compiler logic from Hogan.js in
-        // case you don't need to compile any templates after buid
+        // case you don't need to compile any templates after build
         excludeHogan : true
     },
 
