@@ -1,0 +1,12 @@
+{
+  "name": "requirejs-hogan-plugin",
+  "version": "0.3.0",
+  "main": "hgn.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "test",
+    "package.json"
+  ]
+}
