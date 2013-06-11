@@ -63,6 +63,29 @@ It will update the `test/scripts/main_built.js` file.
 
 
 
+## Changelog
+
+### v0.3.0 (2013/06/11)
+
+ - update Hogan to v3.0
+
+### v0.2.1 (2013/02/08)
+
+ - add `template` property to the compiled template.
+ - fix in case `config.hgn` isn't defined.
+
+### v0.2.0 (2012/06/29)
+
+ - add `compilationOptions` support.
+ - add pragmas to remove compiler during build.
+ - return `Template#render` method instead of the `Hogan.template` object.
+
+### v0.1.0 (2012/06/18)
+
+ - initial release.
+
+
+
 ## License
 
 Released under the MIT license.
