@@ -335,6 +335,7 @@ var Hogan = {};
 })(typeof exports !== 'undefined' ? exports : Hogan);
 
 
+//>>excludeStart('excludeHogan', pragmas.excludeHogan)
 
 (function (Hogan) {
   // Setup regex  assignments
@@ -736,6 +737,8 @@ var Hogan = {};
     return this.cache[key] = template;
   }
 })(typeof exports !== 'undefined' ? exports : Hogan);
+
+//>>excludeEnd('excludeHogan')
 
 
 if (typeof define === 'function' && define.amd) {

@@ -34,9 +34,8 @@ require(['hgn!foo'], function(foo){
         names : ['world', 'foo bar', 'lorem ipsum', 'nurse']
     };
 
-    // before build you can also access the `foo.text` property for debugging
-    // if needed
-    // console.log( foo.text )
+    // you can also access the `foo.template` property for debugging if needed
+    // console.log( foo.template )
     document.getElementById('wrapper').innerHTML += foo(data);
 
 });

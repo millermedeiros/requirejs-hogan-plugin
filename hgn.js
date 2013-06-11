@@ -1,5 +1,5 @@
 /**@license
- * RequireJS Hogan Plugin | v0.2.1 (2013/02/08)
+ * RequireJS Hogan Plugin | v0.3.0 (2013/06/11)
  * Author: Miller Medeiros | MIT License
  */
 define(['hogan', 'text'], function (hogan, text) {
