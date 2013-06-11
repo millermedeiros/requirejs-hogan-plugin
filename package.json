@@ -1,17 +1,24 @@
 {
-  "name": "requirejs-hogan-plugin"
-  , "description": "A requirejs wrapper for the mustache compiler."
-  , "version": "0.0.1"
-  , "keywords": ["mustache", "template", "requirejs"]
-  , "main": "./hgn.js"
-  , "homepage": "https://github.com/millermedeiros/requirejs-hogan-plugin"
-  , "author": "Millermedeiros"
-  , "repository": {
-    "type": "git"
-    , "url": "git://github.com/millermedeiros/requirejs-hogan-plugin.git"
+  "name": "requirejs-hogan-plugin",
+  "description": "A requirejs wrapper for the mustache compiler.",
+  "version": "0.3.0",
+  "keywords": [
+    "mustache",
+    "template",
+    "requirejs"
+  ],
+  "main": "./hgn.js",
+  "homepage": "https://github.com/millermedeiros/requirejs-hogan-plugin",
+  "author": "Millermedeiros",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/millermedeiros/requirejs-hogan-plugin.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "requirejs": "~2.1.6"
+  },
+  "scripts" : {
+    "test" : "cd test && node build && open index_built.html"
   }
-  , "license": "MIT"
-  , "dependencies" : {
-      "requirejs" : "2.1.6"
-    }
 }
