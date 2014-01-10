@@ -44,10 +44,29 @@ it as pure JavaScript for better performance:
 define("hgn!foo", ["hogan"], function(hogan){  var tmpl = new hogan.Template(function(c,p,i){var _=this;_.b(i=i||"");_.b("<div class=\"foo\">\r");_.b("\n" + i);_.b("    <h1>");_.b(_.v(_.f("title",c,p,0)));_.b("</h1>\r");_.b("\n" + i);_.b("    <ul>\r");_.b("\n" + i);if(_.s(_.f("names",c,p,1),c,p,0,71,105,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("        <li>");_.b(_.v(_.d(".",c,p,0)));_.b("</li>\r");_.b("\n");});c.pop();}_.b("    </ul>\r");_.b("\n" + i);_.b("</div>\r");_.b("\n");return _.fl();;}, "", hogan);  return function(){ return tmpl.render.apply(tmpl, arguments); };});;
 ```
 
+
 The plugin code is only required for dynamic load so you can use the `r.js`
 setting `stubModules` to remove the `text!` and `hgn!` plugins during build,
 see `test/build.js` for example.
 
+#### Partials
+
+This plugin also supports partials however it needs a slightly different argument to the standard hogan.js method. Eg:
+
+```js
+require(['hgn!foo', 'hgn!bar'], function(foo, bar){
+    // the plugin will return the `render()` method of the `Hogan.Template`
+    var markup = foo({
+        title : 'Hello!',
+        names : ['world', 'foo bar', 'lorem ipsum', 'nurse']
+    },
+    {
+        // note the .template, it is required because the plugin returns the `render()` method directly
+        bar: bar.template
+    });
+    console.log(markup);
+});
+```
 
 
 ## Example
